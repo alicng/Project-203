@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   database:
     image: mysql:5.7
@@ -14,8 +15,9 @@ services:
         target: /docker-entrypoint-initdb.d/init.sql
     networks:
       - clarusnet
+
   app-server:
-    image: 070980478435.dkr.ecr.us-east-1.amazonaws.com/clarusway-repo/phonebook-app:latest"
+    image: 046402772087.dkr.ecr.us-east-1.amazonaws.com/clarusway-repo/phonebook-app:latest
     deploy:
       mode: global
       update_config:
@@ -26,11 +28,14 @@ services:
       - "80:80"
     networks:
       - clarusnet
+
 networks:
   clarusnet:
     driver: overlay
+
 volumes:
   db-data:
+
 configs:
   myinit:
     file: ./init.sql
